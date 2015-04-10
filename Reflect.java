@@ -156,3 +156,19 @@ public java.lang.String getId
 public int getHp
 public int getUserLevel
 public void setUserLevel
+
+此外反射機制還可以取得private成員的值，而不需要透過對外開放的getter/setter函式
+
+UserAttribute userAttribute = new UserAttribute();
+userAttribute.setUserLevel(10);
+	
+Field field = c.getDeclaredField("userLevel");
+field.setAccessible(true);
+Object value = field.get(userAttribute);
+System.out.println(value);
+field.set(userAttribute, 20);
+System.out.println(userAttribute.getUserLevel());
+
+// 執行結果
+10
+20
