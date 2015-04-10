@@ -19,6 +19,12 @@ public interface Attribute
 // 玩家屬性 實作介面屬性
 public class UserAttribute implements Attribute
 {
+	private int userLevel;
+	
+	protected int userVip;
+	
+	public String userID;
+	
 	@Override
 	public int getHp()
 	{
@@ -38,6 +44,16 @@ public class UserAttribute implements Attribute
 	{
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int getUserLevel()
+	{
+		return userLevel;
+	}
+
+	public void setUserLevel(int userLevel)
+	{
+		this.userLevel = userLevel;
 	}
 }
 
@@ -119,14 +135,24 @@ public class Main
 		Class<?> c = null;
 		try
 		{
-			c = ReflectProcessor.getInstance().getClassByName("xpec.vincent.reflect.Attribute");
+			c = ReflectProcessor.getInstance().getClassByName("xpec.vincent.reflect.userAttribute");
 		}
 		catch (ClassNotFoundException e)
 		{
 			e.printStackTrace();
 		}
-
+		// 反射class的成員與方法
 		ReflectProcessor.getInstance().printFields(c);
 		ReflectProcessor.getInstance().printMethods(c);
 	}
 }
+
+// 執行結果
+private int userLevel
+protected int userVip
+public java.lang.String userID
+public java.lang.String getName
+public java.lang.String getId
+public int getHp
+public int getUserLevel
+public void setUserLevel
