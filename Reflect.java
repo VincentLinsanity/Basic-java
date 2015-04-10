@@ -1,4 +1,9 @@
 這個範例說明如何使用java的反射(Reflect)機制在執行期取得一個類別的成員(屬性及方法)
+其中modifier包含了public/private/protected static final const等修飾詞
+type表示 String/int/float/boolean等等型別
+name表示屬性或方法的名稱
+方法回傳的型別為Method、屬性回傳的型別為Field，也可以一次取得全部的成員或方法，以陣列回傳
+另外當一個成員被宣告為private時，仍可利用反射機制取值/設值而不需要透過公開的getter/setter函式
 
 // 介面屬性
 public interface Attribute
