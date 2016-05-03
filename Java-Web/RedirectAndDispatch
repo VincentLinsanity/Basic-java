@@ -1,0 +1,28 @@
+這份文件記錄一些關於JAVA Servlet的筆記
+
+重導(redirect) vs 請求分派(request dispatch)
+
+重導跟情求分派都是當servlet收到請求時，認為這個請求應該由其他的servlet來處理的機制
+
+重導的範例如下:
+		// 如果不是屬於這個servlet的業務範圍，我們可以選擇使用重導機制(redirect)將請求重新分給正確的servlet
+		if (request.getAttribute("GAME").equals("other")) // 假設請求中一定要有GAME這個屬性的設定值
+		{
+			response.sendRedirect("foo/other.html"); // 注意重導一定要在回應完成以前執行
+			/* 重導中帶的參數為String非url的物件
+			* 如不使用/開頭則會是同一個應用的相對url，如http://localhost:8080/Test/foo/other.html
+			* 若使用/開頭，/foo/other.html，則路徑為http://localhost:8080/foo/other.html
+			*/ 
+		}
+		
+請求分派的範例如下:
+		String gameType = request.getParameter("type"); // 取得用户端送出的资讯
+		GameExpert gameExpert = new GameExpert(); // 建立GameExpert实例
+		List<?> resultList = gameExpert.getGames(gameType); // 调用方法取得推荐资讯
+		request.setAttribute("styles", resultList); // 為了使用JSP，將屬性加到請求物件中
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("result.jsp"); // 為JSP實例一個請求分派器
+		requestDispatcher.forward(request, response);
+		//使用請求分派器，要求container將要求轉向JSP，傳入請求與回應物件
+		
+重導會讓使用者(前端)取得重導後的url重新傳送一次請求，也就是使用者會看到url改變
+請求分派則是直接把請求交給其他的servlet處理並回傳給使用者

@@ -1,0 +1,38 @@
+這份文件對於java servlet中的servletContext與servletConfig作一些簡單的比較
+
+先說明servletConfig
+
+範例:
+	<servlet>
+		<servlet-name>Ch4Download</servlet-name>
+		<servlet-class>com.example.web.DownloadFile</servlet-class>
+		<init-param>
+			<param-name>download info</param-name>
+			<param-value>this is download info</param-value>
+		</init-param>
+	</servlet>
+	
+servletConfig作用的範圍是servlet存活期間
+無法在view層(如jsp)中存取，必須在servlet中以getServletConfig.getInitParameter("")的方式取值
+並以request.setAttribute()設定到屬性中，才能在view層值
+同時在DD(web.xml)中必須設定於servlet的層級內
+
+
+另外說明servletContext，實際應該叫applicationContext才是比較正確的
+因為Context作用的範圍是整個應用而非特定的servlet生命週期中
+
+先看範例:
+<web-app>
+<!-- 放著一些其他的servlet設定 -->
+	<context-param>
+		<param-name>adminEmail</param-name>
+		<param-value>Vincent_Lin@xpec.com</param-value>
+	</context-param>
+</web-app>
+
+於DD中設定servletContext必須在web-app的層級下，而非任意的servlet層級內
+同時view與model層皆可存取Context的值
+可用getServletContext().getInitParameter("")取值
+
+另整個應用(Application)只會有一個servletContext的實體
+一個servlet只會有一個servletConfig的實體

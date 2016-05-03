@@ -1,0 +1,53 @@
+		這個範例說明如何以javaScript撰寫選單，配合PlatformStatisticsAction.java執行
+		前端業面PlatformStatisticsAction.xhtml提供條件選擇，執行時依使用者的條件執行搜索並回傳結果
+		這個範例省略結果顯示的部分，專注於建立選單與條件
+		
+		<!-- javascript 這個含式用來快速全選/取消選單 -->
+			<script type="text/javascript">
+				function changeCheck(flag) {
+					var xyz = document.getElementsByClassName("checkServer");
+
+					for ( var i = 0; xyz.length > i; i++) {
+						xyz[i].checked = flag;
+					}
+				}
+			</script>
+			
+			<table width="50%" align="center">
+						<tr>
+							<td>
+								<div id="searchResult" style="float: center; width: 60%">
+								<!-- 選單的內容是一個ArrayList<String>  -->
+									<h:dataTable id="serverList"
+										value="#{PlatformStatisticsAction.serverList}" var="hot"
+										rendered="#{PlatformStatisticsAction.serverList.size>0}"
+										border="1" style="word-break:break-all;" styleClass="table-1">
+
+                    <!-- 全選的選單，會用到上面的script -->
+										<h:column>
+											<f:facet name="header">
+												<input type="checkbox" name="checkAll"
+													onclick="changeCheck(this.checked)" />
+											</f:facet>
+                      
+                      <!-- 將選擇的表格回傳到後台的程式中提供存取 -->
+											<div align="center">
+												<h:selectBooleanCheckbox class="checkServer"
+													value="#{PlatformStatisticsAction.checked[hot]}">
+												</h:selectBooleanCheckbox>
+											</div>
+										</h:column>
+                    
+                    <!-- 標題 -->
+										<h:column>
+											<f:facet name="header">
+												<h:outputText
+													value="server index #{messages['page.updateserverlimitip.limit']}" />
+											</f:facet>
+											<div align="center">#{hot}</div>
+										</h:column>
+									</h:dataTable>
+								</div>
+							</td>
+						</tr>
+					</table>
