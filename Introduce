@@ -1,0 +1,32 @@
+這個資料夾內主要是放關於演算法的心得，
+使用的語言以JAVA為主，
+主要參考的書籍是下面這兩本：
+This folder is talk about algorthim mainly,
+using JAVA,
+reference to two books below:
+
+Data Structures and Algorithm
+Analysis
+Edition 3.2 (Java Version)
+Clifford A. Shaffer
+
+Introduction to Algorithms
+Third Edition
+Thomas H. Cormen
+Charles E. Leiserson
+Ronald L. Rivest
+Clifford Stein
+
+會以中文為主，可能的話會盡量加上英文翻譯
+Most of content writed by Chinese, possible translate to English 
+
+學習演算法的主要目的是加強程式能力，對我而言，
+因此這份文件不一定適用於所有人，
+目標是具有字典與筆記的功能，而非學習文件
+For me, the purpose of learning algorthim is enhance program design,
+so this document may not fit to everynoe,
+the goal is be dictionary or note, not for study.
+
+
+
+
